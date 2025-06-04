@@ -32,7 +32,15 @@ const SignUp = () => {
         const upDateInfo = {
           displayName: name,
           photoURL: photo,
-        };
+          };
+          
+          userUpdateProfile(upDateInfo)
+              .then(() => {
+              
+              }).catch(error => {
+        errorToast(error.message);
+              
+          })
 
         notify();
       })

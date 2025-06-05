@@ -4,6 +4,7 @@ import { Link } from "react-router";
 import { toast } from "react-toastify";
 import { CiRead, CiUnread } from "react-icons/ci";
 import { AuthContext } from "../../Context/Context";
+import SignUpGoogle from "../../Sharing/SignUpGoogle";
 
 const SignUp = () => {
   const notify = () => toast.success("Account crate successfully");
@@ -116,6 +117,7 @@ const SignUp = () => {
               Sign Up
             </button>
           </form>
+          <SignUpGoogle></SignUpGoogle>
 
           <div className="mt-6 flex items-center justify-center">
             <p className="text-text-muted text-sm">

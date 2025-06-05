@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router";
 import { CiRead, CiUnread } from "react-icons/ci";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../Context/Context";
+import SignUpGoogle from "../../Sharing/SignUpGoogle";
 
 const Login = () => {
   const notify = () => toast.success("login account successfully");
@@ -78,6 +79,7 @@ const Login = () => {
               Login
             </button>
           </form>
+          <SignUpGoogle></SignUpGoogle>
 
           <div className="mt-6 flex items-center justify-center">
             <p className="text-text-muted text-sm">

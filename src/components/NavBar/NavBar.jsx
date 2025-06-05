@@ -1,10 +1,11 @@
 import React, { use } from "react";
 import { Link, NavLink } from "react-router";
 import "./NavBar.css";
-import { AuthContext } from "../../Context/Context";
+import { AuthContext, ImgContext } from "../../Context/Context";
 
 const NavBar = () => {
   const { user, userSignOut } = use(AuthContext);
+  const {profilePik}=use(ImgContext)
 
   const link = (
     <>
@@ -77,7 +78,7 @@ const NavBar = () => {
             (
             <div className="avatar">
               <div className="ring-primary ring-offset-base-100 w-9 rounded-full ring-2 ring-offset-2">
-                <img src={user && user?.photoURL} />
+                <img src={user && user?.photoURL || profilePik} />
               </div>
             </div>
             )

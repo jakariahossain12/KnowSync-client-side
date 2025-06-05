@@ -1,6 +1,6 @@
 import React, { use, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { CiRead, CiUnread } from "react-icons/ci";
 import { AuthContext } from "../../Context/Context";
@@ -10,7 +10,8 @@ const SignUp = () => {
   const notify = () => toast.success("Account crate successfully");
   const errorToast = (er) => toast.error(er);
   const [show, setShow] = useState(false);
-
+  const location = useLocation();
+  const navigate = useNavigate();
   const { userSignUp, userUpdateProfile } = use(AuthContext);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -37,7 +38,7 @@ const SignUp = () => {
           
           userUpdateProfile(upDateInfo)
               .then(() => {
-              
+              navigate(location?.state || '/')
               }).catch(error => {
         errorToast(error.message);
               

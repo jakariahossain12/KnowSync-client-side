@@ -1,19 +1,20 @@
 import React, { use } from 'react';
 import { AuthContext } from '../Context/Context';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 import { FcGoogle } from 'react-icons/fc';
 
 const SignUpGoogle = () => {
     const notify = () => toast.success("login account successfully");
     const errorToast = (er) => toast.error(er);
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const location = useLocation();
     const {userSignUpWithGoogle}=use(AuthContext)
     const handleGoogleLogin = () => {
       userSignUpWithGoogle()
         .then(() => {
           notify();
-          navigate( "/");
+          navigate(location?.state || "/");
         })
         .catch((error) => {
           errorToast(error.message);

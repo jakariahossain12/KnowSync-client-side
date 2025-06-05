@@ -1,6 +1,6 @@
 import React, { use, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { CiRead, CiUnread } from "react-icons/ci";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../Context/Context";
@@ -11,6 +11,7 @@ const Login = () => {
   const errorToast = (er) => toast.error(er);
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
   
 
   const { userLogin } = use(AuthContext);
@@ -22,7 +23,7 @@ const Login = () => {
     userLogin(email, password)
       .then(() => {
         notify();
-        navigate("/");
+        navigate( location?.state || "/");
       })
       .catch((error) => {
         errorToast(error.message);
@@ -84,7 +85,7 @@ const Login = () => {
           <div className="mt-6 flex items-center justify-center">
             <p className="text-text-muted text-sm">
               Don’t have an account?{" "}
-              <Link to="/sign-up" className="text-blue-600 hover:underline">
+              <Link state={location?.state} to="/sign-up" className="text-blue-600 hover:underline">
                 Sign Up
               </Link>
             </p>

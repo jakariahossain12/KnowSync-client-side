@@ -64,7 +64,9 @@ const NavBar = () => {
             {link}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <a className="btn btn-ghost text-3xl text-primary logo font-bold">
+          KnowSync
+        </a>
       </div>
       <div className="navbar-end flex gap-8">
         <div className=" hidden lg:flex">
@@ -83,14 +85,22 @@ const NavBar = () => {
               <div className="font-semibold text-text mb-2">
                 {user && user?.displayName}
               </div>
-              <button onClick={handleSignOut} className="w-full bg-red-500 text-white py-1 px-2 rounded hover:bg-red-600">
+              <button
+                onClick={handleSignOut}
+                className="w-full bg-red-500 text-white py-1 px-2 rounded hover:bg-red-600"
+              >
                 Sign Out
               </button>
             </div>
           </div>
         ) : (
           <div className=" ">
-            <Link to={'/login'} className="btn btn-primary font-bold hover:scale-105 transition-transform duration-200">Login</Link>
+            <Link
+              to={"/login"}
+              className="btn btn-primary font-bold hover:scale-105 transition-transform duration-200"
+            >
+              Login
+            </Link>
           </div>
         )}
       </div>

@@ -1,8 +1,10 @@
-import React from 'react';
-import { NavLink } from 'react-router';
+import React, { use } from 'react';
+import { Link, NavLink } from 'react-router';
 import './NavBar.css'
+import { AuthContext } from '../../Context/Context';
 
 const NavBar = () => {
+  const {user}=use(AuthContext)
     
     
     const link = (
@@ -62,9 +64,32 @@ const NavBar = () => {
           <div className=" hidden lg:flex">
             <ul className="menu menu-horizontal px-1">{link}</ul>
           </div>
-          <div className=" ">
-            <a className="btn">Login</a>
-          </div>
+          {user ? (
+            <div className="relative inline-block group">
+              (
+              <div className="avatar">
+                <div className="ring-primary ring-offset-base-100 w-9 rounded-full ring-2 ring-offset-2">
+                  <img src={(user && user?.photoURL)} />
+                </div>
+              </div>
+              )
+              <div className="absolute left-12 w-48 mt-0 hidden  bg-white border border-gray-200 rounded-lg shadow-lg p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10 group-hover:-left-40  group-hover:block">
+                <div className="font-semibold text-gray-800 mb-2">
+                  {(user && user?.displayName)}
+                </div>
+                <button
+                  
+                  className="w-full bg-red-500 text-white py-1 px-2 rounded hover:bg-red-600"
+                >
+                  Sign Out
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div className=" ">
+              <Link className="btn btn-primary font-bold ">Login</Link>
+            </div>
+          )}
         </div>
       </div>
     );

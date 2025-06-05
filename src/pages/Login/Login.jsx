@@ -1,71 +1,43 @@
 import React, { use, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router";
-import { toast } from "react-toastify";
+import { Link, useNavigate } from "react-router";
 import { CiRead, CiUnread } from "react-icons/ci";
+import { toast } from "react-toastify";
 import { AuthContext } from "../../Context/Context";
 
-const SignUp = () => {
-  const notify = () => toast.success("Account crate successfully");
+const Login = () => {
+  const notify = () => toast.success("login account successfully");
   const errorToast = (er) => toast.error(er);
   const [show, setShow] = useState(false);
+  const navigate = useNavigate();
+  
 
-  const { userSignUp, userUpdateProfile } = use(AuthContext);
+  const { userLogin } = use(AuthContext);
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
-    const { name, email, password, photo } = Object.fromEntries(
-      formData.entries()
-    );
-
-    if (password.length < 6) {
-      return errorToast("Password Length must be at least 6 character");
-    } else if (!/[A-Z]/.test(password)) {
-      return errorToast("Must have an Uppercase letter in the password ");
-    } else if (!/[a-z]/.test(password)) {
-      return errorToast("Must have a Lowercase letter in the password");
-    }
-
-    userSignUp(email, password)
+    const { email, password } = Object.fromEntries(formData.entries());
+    userLogin(email, password)
       .then(() => {
-        const upDateInfo = {
-          displayName: name,
-          photoURL: photo,
-          };
-          
-          userUpdateProfile(upDateInfo)
-              .then(() => {
-              
-              }).catch(error => {
-        errorToast(error.message);
-              
-          })
-
         notify();
+        navigate("/");
       })
       .catch((error) => {
         errorToast(error.message);
       });
   };
 
+ 
+
   return (
-    <div className="">
-      <div className="min-h-screen   flex items-center justify-center bg-background p-6">
+    <div>
+      <div className="min-h-screen  flex items-center justify-center bg-background p-6">
         <div className="w-full max-w-md bg-surface rounded-2xl shadow-lg p-8">
           <h2 className="text-2xl font-bold text-center text-text mb-6">
-            Create an Account
+            Welcome Back
           </h2>
           <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label className="block text-text-muted mb-1">Name</label>
-              <input
-                type="text"
-                required
-                name="name"
-                className="w-full px-4 py-2 border rounded-xl "
-              />
-            </div>
             <div>
               <label className="block text-text-muted mb-1">Email</label>
               <input
@@ -75,24 +47,14 @@ const SignUp = () => {
                 className="w-full px-4 py-2 border rounded-xl "
               />
             </div>
-            <div>
-              <label className="block text-text-muted mb-1">Photo URL</label>
-              <input
-                type="text"
-                name="photo"
-                required
-                className="w-full px-4 py-2 border rounded-xl "
-              />
-            </div>
             <div className="relative">
               <label className="block text-text-muted mb-1">Password</label>
               <input
-                type={show ? "text" : "password"}
+                type={show ? "teat" : "password"}
                 name="password"
                 required
-                className="w-full px-4 py-2 border rounded-xl   "
+                className="w-full px-4 py-2 border rounded-xl "
               />
-
               {show ? (
                 <span
                   onClick={() => setShow((prv) => !prv)}
@@ -111,24 +73,26 @@ const SignUp = () => {
             </div>
             <button
               type="submit"
-              className="w-full bg-primary cursor-pointer text-white py-2 rounded-xl  transition font-bold"
+              className="w-full cursor-pointer bg-primary text-white py-2 rounded-xl  transition"
             >
-              Sign Up
+              Login
             </button>
           </form>
 
           <div className="mt-6 flex items-center justify-center">
             <p className="text-text-muted text-sm">
-              Already have an account?{" "}
-              <Link to="/login" className="text-primary hover:underline">
-                Login
+              Don’t have an account?{" "}
+              <Link to="/sign-up" className="text-blue-600 hover:underline">
+                Sign Up
               </Link>
             </p>
           </div>
+
+          
         </div>
       </div>
     </div>
   );
 };
 
-export default SignUp;
+export default Login;

@@ -1,16 +1,29 @@
 import React from 'react';
 import { NavLink } from 'react-router';
+import './NavBar.css'
 
 const NavBar = () => {
     
     
-    const link = <>
-    <li><NavLink to={'/'}>Home</NavLink></li>
-    <li><NavLink to={"/all-articles"}>All Articles</NavLink></li>
-    <li><NavLink to={'/my-articles'}>My Articles</NavLink></li>
-    <li><NavLink to={'/post-article'}>Post Article</NavLink></li>
-    <li><NavLink to={'/about-us'}>About Us</NavLink></li>
-    </>
+    const link = (
+      <>
+        <li className="font-bold text-text hover:text-primary">
+          <NavLink to={"/"}>Home</NavLink>
+        </li>
+        <li className="font-bold text-text hover:text-primary">
+          <NavLink to={"/all-articles"}>All Articles</NavLink>
+        </li>
+        <li className="font-bold text-text hover:text-primary">
+          <NavLink to={"/my-articles"}>My Articles</NavLink>
+        </li>
+        <li className="font-bold text-text hover:text-primary">
+          <NavLink to={"/post-article"}>Post Article</NavLink>
+        </li>
+        <li className="font-bold text-text hover:text-primary">
+          <NavLink to={"/about-us"}>About Us</NavLink>
+        </li>
+      </>
+    );
 
 
 
@@ -45,7 +58,7 @@ const NavBar = () => {
           </div>
           <a className="btn btn-ghost text-xl">daisyUI</a>
         </div>
-        <div className="navbar-end">
+        <div className="navbar-end flex gap-8">
           <div className=" hidden lg:flex">
             <ul className="menu menu-horizontal px-1">{link}</ul>
           </div>

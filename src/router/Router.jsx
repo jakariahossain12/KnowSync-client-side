@@ -8,10 +8,12 @@ import MyArticle from "../pages/My_Article/MyArticle";
 import PostArticle from "../pages/Post_Article/PostArticle";
 import AboutUs from "../pages/About_Us/AboutUs";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import Error from "../pages/Error/Error";
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement:<Error></Error>, 
     children: [
       { index: true, Component: Home },
       { path: "sign-up", Component: SignUp },

@@ -1,11 +1,15 @@
-import React from 'react';
+
+
+import React from "react";
 
 const MyArticle = () => {
-    return (
-        <div>
-            <h1>my</h1>
-        </div>
-    );
+  
+
+  return (
+    <div>
+      <h1>my</h1>
+   </div>
+  );
 };
 
 export default MyArticle;

@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { ImgContext } from '../Context/Context';
 
 const ProfilePikProvider = ({ children }) => {
-    const [profilePik, setProfilePik]=useState(null)
+    const [profilePik, setProfilePik] = useState(null)
+    console.log(profilePik);
     return <ImgContext value={{profilePik,setProfilePik}}>{children }</ImgContext>
     
 };

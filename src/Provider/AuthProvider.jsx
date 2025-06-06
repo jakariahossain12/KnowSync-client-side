@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,  } from "react";
 
 import {
   createUserWithEmailAndPassword,
@@ -17,7 +17,7 @@ const AuthProvider = ({ children }) => {
   const provider = new GoogleAuthProvider();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  
   const userSignUp = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
@@ -45,10 +45,10 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-      
       if (currentUser) {
         await currentUser.reload();
-        setUser(auth.currentUser);
+        setUser(currentUser);
+
         console.log(currentUser);
       } else {
         setUser(null);
@@ -60,6 +60,8 @@ const AuthProvider = ({ children }) => {
     };
   }, []);
 
+  console.log(user);
+
   const userInfo = {
     user,
     loading,
@@ -70,8 +72,7 @@ const AuthProvider = ({ children }) => {
     userSignUpWithGoogle,
   };
 
-  return <AuthContext value={userInfo}> {children} </AuthContext>
-
+  return <AuthContext value={userInfo}> {children} </AuthContext>;
 };
 
 export default AuthProvider;

@@ -5,7 +5,8 @@ import { AuthContext, ImgContext } from "../../Context/Context";
 
 const NavBar = () => {
   const { user, userSignOut } = use(AuthContext);
-  const {profilePik}=use(ImgContext)
+  const { profilePik } = use(ImgContext)
+console.log(use?.photoURL);
 
   const link = (
     <>

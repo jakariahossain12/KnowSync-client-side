@@ -20,7 +20,7 @@ const PostArticle = () => {
       </h2>
       <form className="">
         <div className="">
-          <label className="label block">Title</label>
+          <label className=" block text-text">Title</label>
           <input
             type="text"
             name="title"
@@ -30,7 +30,7 @@ const PostArticle = () => {
         </div>
 
         <div className="">
-          <label className="label block">Category</label>
+          <label className="block text-text">Category</label>
           <select
             name="category"
             className="select select-bordered w-full"
@@ -45,7 +45,7 @@ const PostArticle = () => {
         </div>
 
         <div className="">
-          <label className="label block">Tags (comma-separated)</label>
+          <label className="block text-text">Tags (comma-separated)</label>
           <input
             type="text"
             name="tags"
@@ -55,7 +55,7 @@ const PostArticle = () => {
         </div>
 
         <div className="">
-          <label className="label block">Thumbnail Image URL</label>
+          <label className="block text-text">Thumbnail Image URL</label>
           <input
             type="url"
             name="thumbnail"
@@ -64,7 +64,7 @@ const PostArticle = () => {
         </div>
 
         <div className="">
-          <label className="label block">Date</label>
+          <label className="block text-text">Date</label>
           <input
             type="date"
             name="date"
@@ -73,7 +73,7 @@ const PostArticle = () => {
         </div>
 
         <div className="">
-          <label className="label block">Name</label>
+          <label className="block text-text">Name</label>
           <input
             type="name"
             name="name"
@@ -82,7 +82,7 @@ const PostArticle = () => {
           />
         </div>
         <div className="">
-          <label className="label block">Email</label>
+          <label className="block text-text">Email</label>
           <input
             type="email"
             value={user?.email}
@@ -92,7 +92,7 @@ const PostArticle = () => {
         </div>
 
         <div className="">
-          <label className="label block">Content</label>
+          <label className="block text-text">Content</label>
           <textarea
             ref={textareaRuf}
             value={content}

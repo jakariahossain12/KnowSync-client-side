@@ -2,6 +2,7 @@ import React, { use } from 'react';
 import { Link } from 'react-router';
 import { Calculator, Code, Palette, Atom, Cpu, Layers } from "lucide-react";
 import * as Icons from "lucide-react";
+import ArticleCard from '../ArticlesCard/ArticleCard';
 
 const categoryPromise = fetch('/category.json').then(res=>res.json())
 
@@ -41,7 +42,17 @@ const PopularAritcles = () => {
                 } 
             
           )}
-        </div>
+            </div>
+            
+
+            <div className=' flex flex-col justify-center items-center gap-4'>
+                <ArticleCard></ArticleCard>
+                <ArticleCard></ArticleCard>
+                <ArticleCard></ArticleCard>
+                <ArticleCard></ArticleCard>
+                <ArticleCard></ArticleCard>
+                <ArticleCard></ArticleCard>
+            </div>
       </div>
     );
 };

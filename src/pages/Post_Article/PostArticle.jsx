@@ -11,14 +11,38 @@ const PostArticle = () => {
       textareaRuf.current.style.height = "auto";
       textareaRuf.current.style.height = `${textareaRuf.current.scrollHeight}px`;
     }
-  },[content])
+  }, [content])
+  
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const form = e.target;
+    const formData = new FormData(form);
+    const article = Object.fromEntries(formData.entries());
+    console.log(article);
+
+    fetch(`http://localhost:3000/article`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(article),
+    }).then(res=>res.json())
+      .then((data) => {
+        alert("post successfully");
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   return (
     <div className="max-w-3xl mx-auto p-4 bg-base-100 rounded-xl shadow space-y-4 my-8">
       <h2 className="text-2xl font-semibold text-primary text-center">
         Create New Article
       </h2>
-      <form className="">
+      <form onSubmit={handleSubmit} className="">
         <div className="">
           <label className=" block text-text">Title</label>
           <input
@@ -98,6 +122,7 @@ const PostArticle = () => {
           <label className="block text-text">Content</label>
           <textarea
             ref={textareaRuf}
+            name="content"
             value={content}
             onChange={(e) => setContent(e.target.value)}
             rows={1}

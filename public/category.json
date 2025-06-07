@@ -1,0 +1,33 @@
+[
+  {
+    "id": 3,
+    "name": "Arts",
+    "icon": "Palette"
+  },
+  {
+    "id": 1,
+    "name": "Math",
+    "icon": "Calculator"
+  },
+  {
+    "id": 4,
+    "name": "Science",
+    "icon": "Atom"
+  },
+  {
+    "id": 5,
+    "name": "Technology",
+    "icon": "Cpu"
+  },
+  {
+    "id": 2,
+    "name": "Programming",
+    "icon": "Code"
+  },
+
+  {
+    "id": 6,
+    "name": "Others",
+    "icon": "Layers"
+  }
+]

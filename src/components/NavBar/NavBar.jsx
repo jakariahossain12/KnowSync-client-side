@@ -1,12 +1,14 @@
-import React, { use } from "react";
+import React, { use, useState } from "react";
 import { Link, NavLink } from "react-router";
 import "./NavBar.css";
 import { AuthContext, ImgContext } from "../../Context/Context";
 
 const NavBar = () => {
   const { user, userSignOut } = use(AuthContext);
-  const { profilePik } = use(ImgContext)
-console.log(use?.photoURL);
+  const { profilePik } = use(ImgContext);
+  const [show, setShow] = useState(false);
+  console.log(use?.photoURL);
+  console.log(show);
 
   const link = (
     <>
@@ -30,13 +32,9 @@ console.log(use?.photoURL);
 
   const handleSignOut = () => {
     userSignOut()
-      .then(() => {
-      
-      })
-      .catch(() => {
-      
-    })
-  }
+      .then(() => {})
+      .catch(() => {});
+  };
 
   return (
     <div className="navbar bg-transparent shadow-sm">
@@ -75,25 +73,33 @@ console.log(use?.photoURL);
           <ul className="menu menu-horizontal px-1">{link}</ul>
         </div>
         {user ? (
-          <div className="relative inline-block group">
-            (
-            <div className="avatar">
+          <div className="relative inline-block">
+            <div
+              className="avatar cursor-pointer"
+              onClick={() => setShow((prev) => !prev)}
+            >
               <div className="ring-primary ring-offset-base-100 w-9 rounded-full ring-2 ring-offset-2">
-                <img src={user && user?.photoURL || profilePik} />
+                <img src={user?.photoURL || profilePik} alt="User Avatar" />
               </div>
             </div>
-            )
-            <div className="absolute left-12 w-48 mt-0 hidden  bg-white border border-gray-200 rounded-lg shadow-lg p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10 group-hover:-left-40  group-hover:block">
-              <div className="font-semibold text-text mb-2">
-                {user && user?.displayName}
+
+            {show && (
+              <div className="absolute right-0 w-48 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg p-4 z-10">
+                <div className="font-semibold text-text mb-2">
+                  {user?.displayName}
+                </div>
+                <button
+                  onClick={() => {
+                    handleSignOut();
+                    setShow(false); // Close after sign out
+                  }}
+                  className="w-full bg-red-500 text-white py-1 px-2 rounded hover:bg-red-600"
+                >
+                  Sign Out
+                </button>
               </div>
-              <button
-                onClick={handleSignOut}
-                className="w-full bg-red-500 text-white py-1 px-2 rounded hover:bg-red-600"
-              >
-                Sign Out
-              </button>
-            </div>
+              
+            )}
           </div>
         ) : (
           <div className=" ">

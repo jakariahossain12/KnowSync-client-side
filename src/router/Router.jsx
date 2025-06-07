@@ -9,6 +9,7 @@ import PostArticle from "../pages/Post_Article/PostArticle";
 import AboutUs from "../pages/About_Us/AboutUs";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import Error from "../pages/Error/Error";
+import ViewCategory from "../pages/ViewCategorie/ViewCategorie";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -36,6 +37,9 @@ export const router = createBrowserRouter([
         ),
       },
       { path: "about-us", element: <AboutUs></AboutUs> },
+      {
+        path:'view-category/:id',element:<ViewCategory></ViewCategory>
+      }
     ],
   },
 ]);

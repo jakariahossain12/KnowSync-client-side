@@ -40,6 +40,9 @@ const PostArticle = () => {
             <option value="Programming">Programming</option>
             <option value="Math">Math</option>
             <option value="Science">Science</option>
+            <option value="Arts">Arts</option>
+            <option value="Technology">Technology</option>
+
             <option value="Others">Others</option>
           </select>
         </div>

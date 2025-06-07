@@ -2,7 +2,7 @@ import React from 'react';
 
 const OurResult = () => {
     return (
-      <section className="bg-gradient-to-r from-primary to-accent text-white py-16 px-4 text-center">
+      <section className="bg-primary text-white py-16 px-4 text-center">
         <h2 className="text-3xl font-bold mb-10">Our Results</h2>
 
         <div className="grid gap-6 md:grid-cols-3 max-w-6xl mx-auto">

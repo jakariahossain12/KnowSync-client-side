@@ -5,7 +5,7 @@ const TopContributors = () => {
       <section className="py-16 px-4 bg-base-100 text-center">
         <h2 className="text-3xl font-bold mb-10">Top Contributors</h2>
         <div className="grid gap-6 md:grid-cols-3 max-w-6xl mx-auto">
-          <div className="bg-base-200 rounded-xl p-6 shadow-md">
+          <div className="bg-base-200 rounded-xl p-6 shadow-md ">
             <img
               src="https://i.pravatar.cc/100?u=user1"
               alt="User 1"

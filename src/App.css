@@ -12,6 +12,7 @@
     default: true;
     --color-primary: #3B82F6;     /* Blue-500 */
     --color-primary-hover: #2563EB;
+   
   
     --color-secondary: #10B981;   /* Teal-Green (Green-500) */
     --color-secondary-hover: #059669;
@@ -20,10 +21,10 @@
     --color-text-muted: #6B7280;  /* Gray-500 */
   
     --color-background: #F9FAFB;  /* Gray-50 */
-    --color-surface: #FFFFFF;     /* Card background */
+    --color-surf: #FFFFFF;     /* Card background */
   
     --color-border: #E5E7EB;      /* Gray-200 */
-    --color-accent: #10B981;      /* Green-500 again for highlights */
+    --color-accent: #6850fd;      /* Green-500 again for highlights */
   
     --color-error: #EF4444;       /* Red-500 */
     --color-success: #22C55E;     /* Green-500 */

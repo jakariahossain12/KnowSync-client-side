@@ -14,9 +14,13 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
-    errorElement:<Error></Error>, 
+    errorElement: <Error></Error>,
     children: [
-      { index: true, Component: Home },
+      {
+        index: true,
+        loader: () => fetch("http://localhost:3000/article"),
+        Component: Home,
+      },
       { path: "sign-up", Component: SignUp },
       { path: "login", Component: Login },
       { path: "all-articles", element: <AllArticles></AllArticles> },
@@ -38,8 +42,9 @@ export const router = createBrowserRouter([
       },
       { path: "about-us", element: <AboutUs></AboutUs> },
       {
-        path:'view-category/:id',element:<ViewCategory></ViewCategory>
-      }
+        path: "view-category/:id",
+        element: <ViewCategory></ViewCategory>,
+      },
     ],
   },
 ]);

@@ -1,7 +1,9 @@
 import React, { use, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../Context/Context";
+import { toast } from "react-toastify";
 
 const PostArticle = () => {
+  const massess =() => toast.success('Article Post Successfully')
   const [content, setContent] = useState("");
   const textareaRuf = useRef(null);
   const {user}=use(AuthContext)
@@ -29,8 +31,11 @@ const PostArticle = () => {
       body: JSON.stringify(article),
     }).then(res=>res.json())
       .then((data) => {
-        alert("post successfully");
-        console.log(data);
+        
+        if (data?.insertedId) {
+          massess();
+          e.target.reset()
+        }
       })
       .catch((error) => {
         console.log(error);

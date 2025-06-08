@@ -47,6 +47,10 @@ export const router = createBrowserRouter([
         path: "view-category/:id",
         element: <ViewCategory></ViewCategory>,
       },
+      {
+        path: "article-all/view-category/:id",
+        element: <ViewCategory></ViewCategory>,
+      },
     ],
   },
 ]);

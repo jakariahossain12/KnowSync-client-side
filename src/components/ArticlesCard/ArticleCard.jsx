@@ -7,11 +7,14 @@ const ArticleCard = ({ article }) => {
   return (
     <div className="bg-white  dark:bg-base-200 rounded-lg border border-gray-200 dark:border-gray-700 p-5 shadow-sm">
       <div className="flex items-center gap-3 mb-2">
-        <img
-          src={article?.authorAvatar || user?.photoURL}
-          alt={article?.author}
-          className="w-10 h-10 rounded-full object-cover"
-        />
+        <div
+          className="avatar cursor-pointer"
+          
+        >
+          <div className="ring-primary ring-offset-base-100 w-9 rounded-full ring-2 ring-offset-2">
+            <img src={user?.photoURL} alt="User Avatar" />
+          </div>
+        </div>
         <div>
           <p className="font-semibold">{article?.author}</p>
           <p className="text-sm text-gray-500">{article?.date}</p>
@@ -23,7 +26,7 @@ const ArticleCard = ({ article }) => {
 
       <div className="flex items-center justify-between text-sm text-gray-600 dark:text-gray-400">
         <button className="flex items-center gap-1 hover:underline">
-          <MessageSquare  className="w-4 h-4 text-primary" />
+          <MessageSquare className="w-4 h-4 text-primary" />
           Add Comment
         </button>
 

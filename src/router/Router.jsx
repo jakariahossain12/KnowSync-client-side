@@ -10,6 +10,7 @@ import AboutUs from "../pages/About_Us/AboutUs";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import Error from "../pages/Error/Error";
 import ViewCategory from "../pages/ViewCategorie/ViewCategorie";
+import Loading from "../components/Loading/Loading";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -18,7 +19,8 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        loader: () => fetch("http://localhost:3000/article"),
+        loader: () => fetch(`http://localhost:3000/article`),
+        hydrateFallbackElement: <Loading></Loading>,
         Component: Home,
       },
       { path: "sign-up", Component: SignUp },

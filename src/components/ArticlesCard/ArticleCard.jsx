@@ -5,7 +5,7 @@ import { AuthContext } from "../../Context/Context";
 const ArticleCard = ({ article }) => {
   const {user}=use(AuthContext)
   return (
-    <div className="bg-white w-3/4 dark:bg-base-200 rounded-lg border border-gray-200 dark:border-gray-700 p-5 shadow-sm">
+    <div className="bg-white  dark:bg-base-200 rounded-lg border border-gray-200 dark:border-gray-700 p-5 shadow-sm">
       <div className="flex items-center gap-3 mb-2">
         <img
           src={article?.authorAvatar || user?.photoURL}

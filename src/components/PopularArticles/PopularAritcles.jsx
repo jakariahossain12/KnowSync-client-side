@@ -29,6 +29,7 @@ const PopularAritcles = ({ articles }) => {
             <Link
               key={category?.id}
               to={`view-category/${category?.name}`}
+              
               className="relative border-2 border-primary inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group"
             >
               <span className="w-48 h-48 rounded rotate-[-40deg] bg-primary absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
@@ -40,7 +41,7 @@ const PopularAritcles = ({ articles }) => {
         })}
       </div>
 
-      <div className=" flex flex-col justify-center items-center gap-4">
+      <div className=" flex flex-col justify-center  gap-4">
         
         {articles.map((article) => (
           <ArticleCard key={article._id} article={article}></ArticleCard>

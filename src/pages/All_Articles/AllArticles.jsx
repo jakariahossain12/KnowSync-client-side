@@ -1,9 +1,10 @@
 import React from 'react';
+import ArticleCard from '../../components/ArticlesCard/ArticleCard';
 
 const AllArticles = () => {
     return (
         <div>
-            <h1>all</h1>
+            <ArticleCard></ArticleCard>
         </div>
     );
 };

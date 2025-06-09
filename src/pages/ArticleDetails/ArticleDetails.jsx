@@ -11,8 +11,7 @@ const ArticleDetails = () => {
   const [likeCount, setLikeCount] = useState(article?.likes?.length);
   // const [likeBy, setLikeBy] = useState(false);
 
-  const [comments, setComments] = useState(article?.comments || []);
-  const [newComment, setNewComment] = useState("");
+  
 
   const handleLike = () => {
     axios
@@ -29,11 +28,16 @@ const ArticleDetails = () => {
       });
   };
 
-  const handleCommentSubmit = () => {
-    if (newComment.trim()) {
-      setComments([...comments, newComment]);
-      setNewComment("");
-    }
+  const handleCommentSubmit = (e) => {
+    e.preventDefault();
+    const comment = e.target.comment.value;
+    const commentInfo = {
+      article_i: article?._id,
+      user_name: user?.displayName,
+      user_photo: user?.photoURL,
+      comment:comment,
+    };
+    console.log(commentInfo);
   };
 
   return (
@@ -75,42 +79,26 @@ const ArticleDetails = () => {
           <ThumbsUp size={18} />
           Like ({likeCount})
         </button>
-        <p className="flex items-center gap-1 text-gray-500">
+        {/* <p className="flex items-center gap-1 text-gray-500">
           <MessageSquare size={18} />
           {comments?.length} Comments
-        </p>
+        </p> */}
       </div>
 
       {/* Comments Section */}
       <div className="mt-6">
         <h3 className="text-lg font-semibold mb-2">Comments</h3>
-        <div className="space-y-2">
-          {comments?.map((comment, idx) => (
-            <div
-              key={idx}
-              className="bg-gray-100 p-2 rounded text-sm text-gray-700"
-            >
-              {comment}
-            </div>
-          ))}
-        </div>
 
         {/* Add Comment */}
-        <div className="mt-4 flex gap-2">
+        <form onSubmit={handleCommentSubmit} className="mt-4 flex gap-2">
           <input
             type="text"
             className="input input-bordered w-full"
             placeholder="Write a comment..."
-            value={newComment}
-            onChange={(e) => setNewComment(e.target.value)}
+            name="comment"
           />
-          <button
-            className="btn btn-primary btn-sm"
-            onClick={handleCommentSubmit}
-          >
-            Post
-          </button>
-        </div>
+          <button type="submit" className="btn btn-primary btn-sm">Post</button>
+        </form>
       </div>
     </div>
   );

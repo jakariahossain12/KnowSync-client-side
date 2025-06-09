@@ -25,8 +25,7 @@ export const router = createBrowserRouter([
         hydrateFallbackElement: <Loading></Loading>,
         Component: Home,
       },
-      { path: "sign-up", Component: SignUp },
-      { path: "login", Component: Login },
+
       { path: "all-articles", element: <AllArticles></AllArticles> },
       {
         path: "my-articles",
@@ -63,8 +62,24 @@ export const router = createBrowserRouter([
         path: "article-details/:id",
         loader: ({ params }) =>
           fetch(`http://localhost:3000/my-article/${params.id}`),
-        element: <PrivateRoute><ArticleDetails></ArticleDetails></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <ArticleDetails></ArticleDetails>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "my-article/article-details/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/my-article/${params.id}`),
+        element: (
+          <PrivateRoute>
+            <ArticleDetails></ArticleDetails>
+          </PrivateRoute>
+        ),
       },
     ],
   },
+  { path: "sign-up", Component: SignUp },
+  { path: "login", Component: Login },
 ]);

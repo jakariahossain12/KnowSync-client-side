@@ -30,7 +30,12 @@ const MyArticleCard = ({ article, handelDelete }) => {
         </div>
 
         <div className="mt-4 flex gap-3 flex-wrap justify-end">
-          <button className="btn btn-sm btn-primary">Read More</button>
+          <Link
+            to={`/my-article/article-details/${article._id}`}
+            className="btn btn-sm btn-primary"
+          >
+            Read More
+          </Link>
           <Link
             to={`/my-article/${article._id}`}
             className="btn btn-sm btn-success hover:bg-white  text-white"

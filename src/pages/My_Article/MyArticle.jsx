@@ -3,12 +3,13 @@ import { AuthContext } from "../../Context/Context";
 import axios from "axios";
 import ArticleCard from "../../components/ArticlesCard/ArticleCard";
 import MyArticleCard from "../../components/MyArticleCard/MYArticleCard";
-import { toast } from "react-toastify";
+
+import Swal from "sweetalert2";
 
 const MyArticle = () => {
   const { user } = use(AuthContext);
   const [articles, setArticle] = useState([]);
-  const message = ()=>toast.success('Article Delete successfully')
+  // const message = ()=>toast.success('')
 
   useEffect(() => {
     axios
@@ -25,19 +26,40 @@ const MyArticle = () => {
   
 
   const handelDelete = (Id) => {
-    axios
-      .delete(`http://localhost:3000/my-article/${Id}`)
-      .then( (res) => {
-        
-        if (res.data.deletedCount) {
-          message()
-          const newArticle =  articles.filter((art) => art._id !== Id);
-          setArticle(newArticle);
-        }
-      })
-      .catch(() => {
-        
-      });
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete(`http://localhost:3000/my-article/${Id}`)
+          .then((res) => {
+            if (res.data.deletedCount) {
+             
+              const newArticle = articles.filter((art) => art._id !== Id);
+              setArticle(newArticle);
+            }
+          })
+          .catch(() => {});
+
+
+        Swal.fire({
+          title: "Deleted!",
+          text: "Article Delete successfully",
+          icon: "success",
+        });
+      }
+    });
+
+
+
+   
   };
 
   return (

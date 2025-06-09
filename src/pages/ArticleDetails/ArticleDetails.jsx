@@ -1,18 +1,32 @@
-import { useState } from "react";
+import { use, useState } from "react";
 import { ThumbsUp, MessageSquare } from "lucide-react";
 import { useLoaderData } from "react-router";
+import axios from "axios";
+import { AuthContext } from "../../Context/Context";
 
 const ArticleDetails = () => {
+  const article = useLoaderData();
+  const { user } = use(AuthContext);
 
-    const article = useLoaderData()
+  const [likeCount, setLikeCount] = useState(article?.likes?.length);
+  // const [likeBy, setLikeBy] = useState(false);
 
-
-  const [likes, setLikes] = useState(article?.likes || 0);
   const [comments, setComments] = useState(article?.comments || []);
   const [newComment, setNewComment] = useState("");
 
   const handleLike = () => {
-    setLikes(likes + 1);
+    axios
+      .patch(`http://localhost:3000/like-article/${article?._id}`, {
+        email: user?.email,
+      })
+      .then((res) => {
+        
+        const isLikes = res.data.likes;
+        setLikeCount(prv => isLikes ? prv + 1 : prv - 1);
+      })
+      .catch(() => {
+        
+      });
   };
 
   const handleCommentSubmit = () => {
@@ -25,6 +39,7 @@ const ArticleDetails = () => {
   return (
     <div className="max-w-3xl my-7 mx-auto p-6 bg-white dark:bg-base-200 rounded-lg shadow">
       {/* Header */}
+      {window.scrollTo(0, 0)}
       <div className="flex items-center gap-4 mb-4">
         <img
           src={article?.userPik}
@@ -47,9 +62,7 @@ const ArticleDetails = () => {
           #{article?.category}
         </span>
         {article?.tags > 0 && (
-          <div className="mt-2 space-x-2">
-            {article?.tags}
-          </div>
+          <div className="mt-2 space-x-2">{article?.tags}</div>
         )}
       </div>
 
@@ -60,7 +73,7 @@ const ArticleDetails = () => {
           className="flex items-center gap-1 text-blue-600 hover:underline"
         >
           <ThumbsUp size={18} />
-          Like ({likes})
+          Like ({likeCount})
         </button>
         <p className="flex items-center gap-1 text-gray-500">
           <MessageSquare size={18} />

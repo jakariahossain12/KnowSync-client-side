@@ -23,6 +23,7 @@ const PostArticle = () => {
     const article = Object.fromEntries(formData.entries());
     console.log(article);
     article.userPik = user.photoURL;
+    article.likes = [];
 
     fetch(`http://localhost:3000/article`, {
       method: "POST",
@@ -36,6 +37,7 @@ const PostArticle = () => {
         if (data?.insertedId) {
           massess();
           e.target.reset()
+          setContent('')
         }
       })
       .catch((error) => {

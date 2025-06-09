@@ -23,7 +23,7 @@ const HeroSection = () => {
             Empower students by posting helpful articles, tips, and resources.
             Learn together. Grow together.
           </p>
-          <Link to="/articles">
+          <Link to="/all-articles">
             <button className="btn btn-primary text-white">
               Explore Articles
             </button>

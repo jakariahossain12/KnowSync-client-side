@@ -11,6 +11,7 @@ const PopularAritcles = ({ articles }) => {
 
   return (
     <div className="w-10/12 mx-auto text-text bg-background my-7 space-y-5">
+      {window.scrollTo(0,0)}
       <div>
         <h1 className="font-extrabold text-4xl text-center">
           {" "}

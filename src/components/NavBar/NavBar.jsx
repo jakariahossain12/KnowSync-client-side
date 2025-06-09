@@ -41,7 +41,7 @@ const NavBar = () => {
     <div className="navbar bg-transparent shadow-sm">
       <div className="navbar-start">
         <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+          <div tabIndex={0} role="button" className="btn  lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -65,9 +65,7 @@ const NavBar = () => {
             {link}
           </ul>
         </div>
-        <a className="btn btn-ghost text-3xl text-primary logo font-bold">
-          KnowSync
-        </a>
+        <a className=" text-3xl text-primary logo font-bold">KnowSync</a>
       </div>
       <div className="navbar-end flex gap-8">
         <div className=" hidden lg:flex">
@@ -85,19 +83,31 @@ const NavBar = () => {
             </div>
 
             {show && (
-              <div className="absolute right-0 w-48 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg p-4 z-10">
-                <div className="font-semibold text-black mb-2">
+              <div className="absolute space-y-3 right-0 w-48 mt-2 bg-background border border-gray-200 rounded-lg shadow-lg p-4 z-10">
+                <div className="font-bold text-text mb-2">
                   {user?.displayName}
                 </div>
-                <button
-                  onClick={() => {
-                    handleSignOut();
-                    setShow(false); // Close after sign out
-                  }}
-                  className="w-full bg-red-500 text-white py-1 px-2 rounded hover:bg-red-600"
-                >
-                  Sign Out
-                </button>
+                <div>
+                  <ul>
+                    <li className="font-bold text-text hover:text-primary">
+                      <NavLink to={"/my-articles"}>My Articles</NavLink>
+                    </li>
+                    <li className="font-bold text-text hover:text-primary">
+                      <NavLink to={"/post-article"}>Post Article</NavLink>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <button
+                    onClick={() => {
+                      handleSignOut();
+                      setShow(false); // Close after sign out
+                    }}
+                    className="w-full bg-red-500 text-white py-1 px-2 rounded hover:bg-red-600"
+                  >
+                    Sign Out
+                  </button>
+                </div>
               </div>
             )}
           </div>

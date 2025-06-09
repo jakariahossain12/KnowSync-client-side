@@ -9,7 +9,7 @@ const NavBar = () => {
   const [show, setShow] = useState(false);
   console.log(use?.photoURL);
   console.log(show);
-  // console.log(profilePik);
+  console.log(profilePik);
 
   const link = (
     <>

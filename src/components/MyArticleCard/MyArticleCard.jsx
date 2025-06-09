@@ -2,8 +2,9 @@ import { MessageSquare, Bookmark } from "lucide-react";
 import { use } from "react";
 import { AuthContext } from "../../Context/Context";
 
-const MyArticleCard = ({ article }) => {
-  const {user}=use(AuthContext)
+const MyArticleCard = ({ article, handelDelete }) => {
+  const { user } = use(AuthContext);
+
   return (
     <div className="bg-white  dark:bg-base-200 rounded-lg border border-gray-200 dark:border-gray-700 p-5 shadow-sm">
       <div className="flex items-center gap-3 mb-2">
@@ -32,7 +33,12 @@ const MyArticleCard = ({ article }) => {
         <div className="mt-4 flex gap-3 flex-wrap justify-end">
           <button className="btn btn-sm btn-primary">Read More</button>
           <button className="btn btn-sm btn-success text-white">UpDate</button>
-          <button className="btn btn-sm btn-error text-white">Delete</button>
+          <button
+            onClick={() => handelDelete(article._id)}
+            className="btn btn-sm btn-error text-white"
+          >
+            Delete
+          </button>
         </div>
       </div>
     </div>

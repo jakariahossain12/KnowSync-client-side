@@ -8,7 +8,7 @@ const AllArticles = () => {
       const categories = use(categoryPromise);
     
     const [articles, setArticle] = useState([])
-    console.log(articles);
+    
     useEffect(() => {
         axios.get("http://localhost:3000/article-all")
             .then(res => {

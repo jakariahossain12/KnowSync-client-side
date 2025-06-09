@@ -15,7 +15,7 @@ const MyArticle = () => {
     axios
       .get(`http://localhost:3000/my-article?email=${user.email}`)
       .then((res) => {
-        console.log(res.data);
+        
         setArticle(res.data)
       })
       .catch((error) => {

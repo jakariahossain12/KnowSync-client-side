@@ -1,4 +1,4 @@
-import { use, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { ThumbsUp, MessageSquare } from "lucide-react";
 import { useLoaderData } from "react-router";
 import axios from "axios";
@@ -9,9 +9,8 @@ const ArticleDetails = () => {
   const { user } = use(AuthContext);
 
   const [likeCount, setLikeCount] = useState(article?.likes?.length);
-  // const [likeBy, setLikeBy] = useState(false);
-
-  
+  const [comments, setComment] = useState([]);
+  const [insertedId,setInsertedId]=useState('')
 
   const handleLike = () => {
     axios
@@ -19,13 +18,10 @@ const ArticleDetails = () => {
         email: user?.email,
       })
       .then((res) => {
-        
         const isLikes = res.data.likes;
-        setLikeCount(prv => isLikes ? prv + 1 : prv - 1);
+        setLikeCount((prv) => (isLikes ? prv + 1 : prv - 1));
       })
-      .catch(() => {
-        
-      });
+      .catch(() => {});
   };
 
   const handleCommentSubmit = (e) => {
@@ -35,10 +31,34 @@ const ArticleDetails = () => {
       article_i: article?._id,
       user_name: user?.displayName,
       user_photo: user?.photoURL,
-      comment:comment,
+      comment: comment,
     };
     console.log(commentInfo);
+
+    axios
+      .post("http://localhost:3000/article-comment", commentInfo)
+      .then((res) => {
+        console.log(res.data);
+        setInsertedId(res.data?.insertedId);
+      })
+      .catch((error) => {
+        console.log(error);
+        setComment(prv=>prv)
+      });
   };
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/article-comment/${article?._id}`)
+      .then((res) => {
+        setComment(res.data)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [article,insertedId]);
+
+  console.log(comments);
 
   return (
     <div className="max-w-3xl my-7 mx-auto p-6 bg-white dark:bg-base-200 rounded-lg shadow">
@@ -79,10 +99,10 @@ const ArticleDetails = () => {
           <ThumbsUp size={18} />
           Like ({likeCount})
         </button>
-        {/* <p className="flex items-center gap-1 text-gray-500">
+        <p className="flex items-center gap-1 text-gray-500">
           <MessageSquare size={18} />
           {comments?.length} Comments
-        </p> */}
+        </p>
       </div>
 
       {/* Comments Section */}
@@ -97,9 +117,29 @@ const ArticleDetails = () => {
             placeholder="Write a comment..."
             name="comment"
           />
-          <button type="submit" className="btn btn-primary btn-sm">Post</button>
+          <button type="submit" className="btn btn-primary btn-sm">
+            Post
+          </button>
         </form>
       </div>
+      {/*comment  */}
+
+      {comments.map((c, idx) => (
+        <div
+          key={idx}
+          className="flex items-start gap-3 bg-white p-3 rounded mb-2"
+        >
+          <img
+            src={c.user_photo}
+            alt={c.user_name}
+            className="w-8 h-8 rounded-full object-cover"
+          />
+          <div>
+            <p className="font-medium">{c.user_name}</p>
+            <p className="text-sm text-gray-700">{c.comment}</p>
+          </div>
+        </div>
+      ))}
     </div>
   );
 };

@@ -11,6 +11,8 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import Error from "../pages/Error/Error";
 import ViewCategory from "../pages/ViewCategorie/ViewCategorie";
 import Loading from "../components/Loading/Loading";
+import MyArticleUpdate from "../pages/MyArticleUpdate/MyArticleUpdate";
+import ArticleDetails from "../pages/ArticleDetails/ArticleDetails";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -50,6 +52,18 @@ export const router = createBrowserRouter([
       {
         path: "article-all/view-category/:id",
         element: <ViewCategory></ViewCategory>,
+      },
+      {
+        path: "my-article/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/my-article/${params.id}`),
+        element: <MyArticleUpdate></MyArticleUpdate>,
+      },
+      {
+        path: "article-details/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/my-article/${params.id}`),
+        element: <PrivateRoute><ArticleDetails></ArticleDetails></PrivateRoute>,
       },
     ],
   },

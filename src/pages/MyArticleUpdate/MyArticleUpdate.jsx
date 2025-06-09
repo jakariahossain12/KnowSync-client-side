@@ -1,59 +1,61 @@
 import React, { use, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../Context/Context";
 import { toast } from "react-toastify";
+import { useLoaderData, useNavigate } from "react-router";
 
-const PostArticle = () => {
-  const massess =() => toast.success('Article Post Successfully')
+const MyArticleUpdate = () => {
+    const article = useLoaderData();
+    const navigate = useNavigate()
+  const massess = () => toast.success("Article Update Successfully");
   const [content, setContent] = useState("");
   const textareaRuf = useRef(null);
-  const {user}=use(AuthContext)
+  const { user } = use(AuthContext);
   useEffect(() => {
-    
     if (textareaRuf.current) {
       textareaRuf.current.style.height = "auto";
       textareaRuf.current.style.height = `${textareaRuf.current.scrollHeight}px`;
     }
-  }, [content])
-  
+  }, [content]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
+  const handleSubmit = (e, id) => {
+    e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
     const article = Object.fromEntries(formData.entries());
-    console.log(article);
-    article.userPik = user.photoURL;
+    
 
-    fetch(`http://localhost:3000/article`, {
-      method: "POST",
+    fetch(`http://localhost:3000/my-article/${id}`, {
+      method: "PUT",
       headers: {
         "content-type": "application/json",
       },
       body: JSON.stringify(article),
-    }).then(res=>res.json())
+    })
+      .then((res) => res.json())
       .then((data) => {
-        
-        if (data?.insertedId) {
-          massess();
-          e.target.reset()
-        }
+          
+          if (data.modifiedCount) {
+              massess()
+              navigate("/my-articles");
+          }
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
+        
       });
-  }
+  };
 
   return (
     <div className="max-w-3xl mx-auto p-4 bg-base-100 rounded-xl shadow space-y-4 my-8">
       <h2 className="text-2xl font-semibold text-primary text-center">
-        Create New Article
+        Update Article
       </h2>
-      <form onSubmit={handleSubmit} className="">
+      <form onSubmit={(e) => handleSubmit(e, article._id)} className="">
         <div className="">
           <label className=" block text-text">Title</label>
           <input
             type="text"
             name="title"
+            defaultValue={article?.title}
             className="input input-bordered w-full"
             required
           />
@@ -63,6 +65,7 @@ const PostArticle = () => {
           <label className="block text-text">Category</label>
           <select
             name="category"
+            defaultValue={article?.category}
             className="select select-bordered w-full"
             required
           >
@@ -82,6 +85,7 @@ const PostArticle = () => {
           <input
             type="text"
             name="tags"
+            defaultValue={article?.tags}
             placeholder="e.g. JavaScript, React"
             className="input input-bordered w-full"
           />
@@ -92,6 +96,7 @@ const PostArticle = () => {
           <input
             type="url"
             name="thumbnail"
+            defaultValue={article?.thumbnail}
             className="input input-bordered w-full"
           />
         </div>
@@ -101,6 +106,7 @@ const PostArticle = () => {
           <input
             type="date"
             name="date"
+            defaultValue={article?.date}
             className="input input-bordered w-full"
           />
         </div>
@@ -129,9 +135,9 @@ const PostArticle = () => {
           <textarea
             ref={textareaRuf}
             name="content"
-            value={content}
             onChange={(e) => setContent(e.target.value)}
             rows={1}
+            defaultValue={article?.content}
             className="w-full p-2 border border-gray-300 rounded resize-none overflow-hidden"
             placeholder="Type something..."
           />
@@ -139,7 +145,7 @@ const PostArticle = () => {
 
         <div>
           <button type="submit" className="btn btn-primary mt-3 w-full">
-            Publish Article
+            Update Article
           </button>
         </div>
       </form>
@@ -147,4 +153,4 @@ const PostArticle = () => {
   );
 };
 
-export default PostArticle;
+export default MyArticleUpdate;

@@ -1,16 +1,15 @@
 import { MessageSquare, Bookmark } from "lucide-react";
 import { use } from "react";
 import { AuthContext } from "../../Context/Context";
+import { Link } from "react-router";
 
 const MyArticleCard = ({ article, handelDelete }) => {
-  const { user } = use(AuthContext);
-
   return (
     <div className="bg-white  dark:bg-base-200 rounded-lg border border-gray-200 dark:border-gray-700 p-5 shadow-sm">
       <div className="flex items-center gap-3 mb-2">
         <div className="avatar cursor-pointer">
           <div className="ring-primary ring-offset-base-100 w-9 rounded-full ring-2 ring-offset-2">
-            <img src={user?.photoURL} alt="User Avatar" />
+            <img src={article.userPik} alt="User Avatar" />
           </div>
         </div>
         <div>
@@ -32,7 +31,12 @@ const MyArticleCard = ({ article, handelDelete }) => {
 
         <div className="mt-4 flex gap-3 flex-wrap justify-end">
           <button className="btn btn-sm btn-primary">Read More</button>
-          <button className="btn btn-sm btn-success text-white">UpDate</button>
+          <Link
+            to={`/my-article/${article._id}`}
+            className="btn btn-sm btn-success hover:bg-white  text-white"
+          >
+            UpDate
+          </Link>
           <button
             onClick={() => handelDelete(article._id)}
             className="btn btn-sm btn-error text-white"

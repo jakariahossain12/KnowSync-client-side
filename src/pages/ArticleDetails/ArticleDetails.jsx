@@ -78,11 +78,11 @@ const ArticleDetails = () => {
 
       {/* Title & Content */}
       <h1 className="text-2xl font-bold mb-2">{article?.title}</h1>
-      <p className="text-gray-700 mb-4">{article?.content}</p>
+      <p className="text-text mb-4">{article?.content}</p>
 
       {/* Meta Info */}
       <div className="mb-4">
-        <span className="text-sm bg-gray-200 text-gray-600 px-2 py-1 rounded">
+        <span className="text-sm bg-text text-gray-600 px-2 py-1 rounded">
           #{article?.category}
         </span>
         {article?.tags > 0 && (
@@ -94,7 +94,7 @@ const ArticleDetails = () => {
       <div className="flex items-center justify-between text-sm mb-6">
         <button
           onClick={handleLike}
-          className="flex items-center gap-1 text-blue-600 hover:underline"
+          className="flex items-center gap-1 text-primary hover:underline"
         >
           <ThumbsUp size={18} />
           Like ({likeCount})
@@ -127,7 +127,7 @@ const ArticleDetails = () => {
       {comments.map((c, idx) => (
         <div
           key={idx}
-          className="flex items-start gap-3 bg-white p-3 rounded mb-2"
+          className="flex items-start gap-3 bg-base-100  p-3 rounded my-5"
         >
           <img
             src={c.user_photo}
@@ -136,7 +136,7 @@ const ArticleDetails = () => {
           />
           <div>
             <p className="font-medium">{c.user_name}</p>
-            <p className="text-sm text-gray-700">{c.comment}</p>
+            <p className="text-sm text-text">{c.comment}</p>
           </div>
         </div>
       ))}

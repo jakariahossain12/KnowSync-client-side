@@ -5,15 +5,18 @@ import ArticleCard from "../../components/ArticlesCard/ArticleCard";
 import MyArticleCard from "../../components/MyArticleCard/MYArticleCard";
 
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const MyArticle = () => {
   const { user } = use(AuthContext);
   const [articles, setArticle] = useState([]);
   // const message = ()=>toast.success('')
+  const axiosSecure = useAxiosSecure()
+
+
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3000/my-article?email=${user.email}`)
+    axiosSecure(`/my-article?email=${user.email}`)
       .then((res) => {
         
         setArticle(res.data)
@@ -21,7 +24,7 @@ const MyArticle = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, [user]);
+  }, [user,axiosSecure]);
 
   
 

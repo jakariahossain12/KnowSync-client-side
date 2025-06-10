@@ -26,7 +26,12 @@ export const router = createBrowserRouter([
         Component: Home,
       },
 
-      { path: "all-articles", element: <AllArticles></AllArticles> },
+      {
+        path: "all-articles",
+        loader: () => fetch("http://localhost:3000/article-all"),
+        hydrateFallbackElement:<Loading></Loading>,
+        element: <AllArticles></AllArticles>,
+      },
       {
         path: "my-articles",
         element: (

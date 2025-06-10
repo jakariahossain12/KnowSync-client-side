@@ -17,6 +17,8 @@ const MyArticleUpdate = () => {
     }
   }, [content]);
 
+  const token = localStorage.getItem("token");
+
   const handleSubmit = (e, id) => {
     e.preventDefault();
     const form = e.target;
@@ -27,21 +29,19 @@ const MyArticleUpdate = () => {
     fetch(`http://localhost:3000/my-article/${id}`, {
       method: "PUT",
       headers: {
+        Authorization: `Bearer ${token}`,
         "content-type": "application/json",
       },
       body: JSON.stringify(article),
     })
       .then((res) => res.json())
       .then((data) => {
-          
-          if (data.modifiedCount) {
-              massess()
-              navigate("/my-articles");
-          }
+        if (data.modifiedCount) {
+          massess();
+          navigate("/my-articles");
+        }
       })
-      .catch(() => {
-        
-      });
+      .catch(() => {});
   };
 
   return (

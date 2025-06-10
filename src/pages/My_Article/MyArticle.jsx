@@ -1,6 +1,6 @@
 import React, { use, useEffect, useState } from "react";
 import { AuthContext } from "../../Context/Context";
-import axios from "axios";
+
 import ArticleCard from "../../components/ArticlesCard/ArticleCard";
 import MyArticleCard from "../../components/MyArticleCard/MYArticleCard";
 
@@ -11,25 +11,19 @@ const MyArticle = () => {
   const { user } = use(AuthContext);
   const [articles, setArticle] = useState([]);
   // const message = ()=>toast.success('')
-  const axiosSecure = useAxiosSecure()
-
-
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
     axiosSecure(`/my-article?email=${user.email}`)
       .then((res) => {
-        
-        setArticle(res.data)
+        setArticle(res.data);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [user,axiosSecure]);
-
-  
+  }, [user, axiosSecure]);
 
   const handelDelete = (Id) => {
-
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -40,17 +34,15 @@ const MyArticle = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios
-          .delete(`http://localhost:3000/my-article/${Id}`)
+        axiosSecure
+          .delete(`/my-article/${Id}`)
           .then((res) => {
             if (res.data.deletedCount) {
-             
               const newArticle = articles.filter((art) => art._id !== Id);
               setArticle(newArticle);
             }
           })
           .catch(() => {});
-
 
         Swal.fire({
           title: "Deleted!",
@@ -59,10 +51,6 @@ const MyArticle = () => {
         });
       }
     });
-
-
-
-   
   };
 
   return (

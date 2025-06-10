@@ -1,23 +1,25 @@
 import React, { use, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../Context/Context";
 import { toast } from "react-toastify";
+// import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const PostArticle = () => {
-  const massess =() => toast.success('Article Post Successfully')
+  const massess = () => toast.success("Article Post Successfully");
   const [content, setContent] = useState("");
   const textareaRuf = useRef(null);
-  const {user}=use(AuthContext)
+  const { user } = use(AuthContext);
   useEffect(() => {
-    
     if (textareaRuf.current) {
       textareaRuf.current.style.height = "auto";
       textareaRuf.current.style.height = `${textareaRuf.current.scrollHeight}px`;
     }
-  }, [content])
-  
+  }, [content]);
+
+  // const axiosSecure = useAxiosSecure()
+  const token = localStorage.getItem("token");
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
     const article = Object.fromEntries(formData.entries());
@@ -25,25 +27,28 @@ const PostArticle = () => {
     article.userPik = user.photoURL;
     article.likes = [];
 
+    
+
     fetch(`http://localhost:3000/article`, {
       method: "POST",
       headers: {
+        Authorization: `Bearer ${token}`,
         "content-type": "application/json",
       },
       body: JSON.stringify(article),
-    }).then(res=>res.json())
+    })
+      .then((res) => res.json())
       .then((data) => {
-        
         if (data?.insertedId) {
           massess();
-          e.target.reset()
-          setContent('')
+          e.target.reset();
+          setContent("");
         }
       })
       .catch((error) => {
         console.log(error);
       });
-  }
+  };
 
   return (
     <div className="max-w-3xl mx-auto p-4 bg-base-100 rounded-xl shadow space-y-4 my-8">

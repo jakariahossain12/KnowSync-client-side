@@ -4,8 +4,8 @@ import { toast } from "react-toastify";
 import { useLoaderData, useNavigate } from "react-router";
 
 const MyArticleUpdate = () => {
-    const article = useLoaderData();
-    const navigate = useNavigate()
+  const article = useLoaderData();
+  const navigate = useNavigate();
   const massess = () => toast.success("Article Update Successfully");
   const [content, setContent] = useState("");
   const textareaRuf = useRef(null);
@@ -24,9 +24,8 @@ const MyArticleUpdate = () => {
     const form = e.target;
     const formData = new FormData(form);
     const article = Object.fromEntries(formData.entries());
-    
 
-    fetch(`http://localhost:3000/my-article/${id}`, {
+    fetch(`https://know-sync-server-side.vercel.app/my-article/${id}`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${token}`,

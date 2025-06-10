@@ -1,4 +1,4 @@
-import React, { useState, useEffect,  } from "react";
+import React, { useState, useEffect } from "react";
 
 import {
   createUserWithEmailAndPassword,
@@ -18,7 +18,7 @@ const AuthProvider = ({ children }) => {
   const provider = new GoogleAuthProvider();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  
+
   const userSignUp = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
@@ -51,17 +51,15 @@ const AuthProvider = ({ children }) => {
         await currentUser.reload();
         setUser(currentUser);
 
-        axios.post("http://localhost:3000/jwt-token", { email: currentUser?.email })
-          .then(res => {
+        axios
+          .post("https://know-sync-server-side.vercel.app/jwt-token", {
+            email: currentUser?.email,
+          })
+          .then((res) => {
             const token = res.data.token;
             localStorage.setItem("token", token);
-          }).catch(() => {
-          
-        })
-
-
-
-        
+          })
+          .catch(() => {});
       } else {
         setUser(null);
       }
@@ -71,8 +69,6 @@ const AuthProvider = ({ children }) => {
       unsubscribe();
     };
   }, []);
-
-  
 
   const userInfo = {
     user,

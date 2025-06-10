@@ -10,13 +10,16 @@ const ArticleDetails = () => {
 
   const [likeCount, setLikeCount] = useState(article?.likes?.length);
   const [comments, setComment] = useState([]);
-  const [insertedId,setInsertedId]=useState('')
+  const [insertedId, setInsertedId] = useState("");
 
   const handleLike = () => {
     axios
-      .patch(`http://localhost:3000/like-article/${article?._id}`, {
-        email: user?.email,
-      })
+      .patch(
+        `https://know-sync-server-side.vercel.app/like-article/${article?._id}`,
+        {
+          email: user?.email,
+        }
+      )
       .then((res) => {
         const isLikes = res.data.likes;
         setLikeCount((prv) => (isLikes ? prv + 1 : prv - 1));
@@ -33,32 +36,28 @@ const ArticleDetails = () => {
       user_photo: user?.photoURL,
       comment: comment,
     };
-    
 
     axios
-      .post("http://localhost:3000/article-comment", commentInfo)
+      .post(
+        "https://know-sync-server-side.vercel.app/article-comment",
+        commentInfo
+      )
       .then((res) => {
-        
         setInsertedId(res.data?.insertedId);
       })
-      .catch(() => {
-        
-        
-      });
+      .catch(() => {});
   };
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/article-comment/${article?._id}`)
+      .get(
+        `https://know-sync-server-side.vercel.app/article-comment/${article?._id}`
+      )
       .then((res) => {
-        setComment(res.data)
+        setComment(res.data);
       })
-      .catch(() => {
-        
-      });
-  }, [article,insertedId]);
-
-  
+      .catch(() => {});
+  }, [article, insertedId]);
 
   return (
     <div className="max-w-3xl my-7 mx-auto p-6 bg-white dark:bg-base-200 rounded-lg shadow">

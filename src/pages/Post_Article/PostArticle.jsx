@@ -23,13 +23,11 @@ const PostArticle = () => {
     const form = e.target;
     const formData = new FormData(form);
     const article = Object.fromEntries(formData.entries());
-    
+
     article.userPik = user.photoURL;
     article.likes = [];
 
-    
-
-    fetch(`http://localhost:3000/article`, {
+    fetch(`https://know-sync-server-side.vercel.app/article`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -45,9 +43,7 @@ const PostArticle = () => {
           setContent("");
         }
       })
-      .catch(() => {
-        
-      });
+      .catch(() => {});
   };
 
   return (

@@ -21,14 +21,15 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        loader: () => fetch(`http://localhost:3000/article`),
+        loader: () => fetch(`https://know-sync-server-side.vercel.app/article`),
         hydrateFallbackElement: <Loading></Loading>,
         Component: Home,
       },
 
       {
         path: "all-articles",
-        loader: () => fetch("http://localhost:3000/article-all"),
+        loader: () =>
+          fetch("https://know-sync-server-side.vercel.app/article-all"),
         hydrateFallbackElement: <Loading></Loading>,
         element: <AllArticles></AllArticles>,
       },
@@ -60,14 +61,18 @@ export const router = createBrowserRouter([
       {
         path: "my-article/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/my-article/${params.id}`),
+          fetch(
+            `https://know-sync-server-side.vercel.app/my-article/${params.id}`
+          ),
         hydrateFallbackElement: <Loading></Loading>,
         element: <MyArticleUpdate></MyArticleUpdate>,
       },
       {
         path: "article-details/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/my-article/${params.id}`),
+          fetch(
+            `https://know-sync-server-side.vercel.app/my-article/${params.id}`
+          ),
         hydrateFallbackElement: <Loading></Loading>,
         element: (
           <PrivateRoute>
@@ -78,7 +83,9 @@ export const router = createBrowserRouter([
       {
         path: "my-article/article-details/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/my-article/${params.id}`),
+          fetch(
+            `https://know-sync-server-side.vercel.app/my-article/${params.id}`
+          ),
         hydrateFallbackElement: <Loading></Loading>,
         element: (
           <PrivateRoute>

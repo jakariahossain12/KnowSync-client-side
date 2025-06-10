@@ -6,24 +6,22 @@ import ArticleCard from "../../components/ArticlesCard/ArticleCard";
 const ViewCategory = () => {
   const { id } = useParams();
 
-    const  [articles, setArticle]  = useState([]);
-    
+  const [articles, setArticle] = useState([]);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/article-all?category=${id}`)
+      .get(
+        `https://know-sync-server-side.vercel.app/article-all?category=${id}`
+      )
       .then((res) => {
-          
-          setArticle(res?.data)
+        setArticle(res?.data);
       })
-      .catch(() => {
-        
-      });
-  }, [id,setArticle]);
+      .catch(() => {});
+  }, [id, setArticle]);
 
   return (
     <>
-      {window.scrollTo(0,0)}
+      {window.scrollTo(0, 0)}
       <div className="my-4 space-y-4 min-h-80">
         <h1 className="text-center text-3xl font-bold">
           {articles.length > 0 ? `All ${id} Articles` : `No ${id} Articles`}{" "}

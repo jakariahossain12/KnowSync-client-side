@@ -7,16 +7,23 @@ const categoryPromise = fetch("/category.json").then((res) => res.json());
 const AllArticles = () => {
       const categories = use(categoryPromise);
     
-    const [articles, setArticle] = useState([])
+  const [articles, setArticle] = useState([])
+  const token = localStorage.getItem("token");
     
     useEffect(() => {
-        axios.get("http://localhost:3000/article-all")
-            .then(res => {
-            setArticle(res.data)
-            }).catch(error => {
-            console.log(error);
+      axios
+        .get("http://localhost:3000/article-all", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         })
-    },[])
+        .then((res) => {
+          setArticle(res.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },[token])
     return (
       <div className="my-7 space-y-3">
         <h1 className="text-center text-3xl font-bold">All Articles</h1>

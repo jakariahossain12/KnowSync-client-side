@@ -12,6 +12,7 @@ import {
 
 import { AuthContext } from "../Context/Context";
 import { auth } from "../firebase/firebase.config";
+import axios from "axios";
 
 const AuthProvider = ({ children }) => {
   const provider = new GoogleAuthProvider();
@@ -40,6 +41,7 @@ const AuthProvider = ({ children }) => {
 
   const userSignOut = () => {
     setLoading(true);
+    localStorage.removeItem("token");
     return signOut(auth);
   };
 
@@ -48,6 +50,16 @@ const AuthProvider = ({ children }) => {
       if (currentUser) {
         await currentUser.reload();
         setUser(currentUser);
+
+        axios.post("http://localhost:3000/jwt-token", { email: currentUser?.email })
+          .then(res => {
+            const token = res.data.token;
+            localStorage.setItem("token", token);
+          }).catch(error => {
+          console.log(error);
+        })
+
+
 
         console.log(currentUser);
       } else {

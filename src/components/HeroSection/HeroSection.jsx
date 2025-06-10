@@ -4,7 +4,7 @@ import { easeInOut, motion } from "motion/react";
 
 const HeroSection = () => {
   return (
-    <div className="hero h-screen bg-linear-to-br from-primary to-accent relative">
+    <div className="hero h-screen md:min-h-[700px] bg-linear-to-br from-primary to-accent relative">
       <div className="absolute left-0 bottom-0 hidden xl:block">
         <motion.img
           initial={{ x: -200, opacity: 0 }}

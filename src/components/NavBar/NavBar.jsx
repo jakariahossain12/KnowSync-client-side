@@ -7,9 +7,9 @@ const NavBar = () => {
   const { user, userSignOut } = use(AuthContext);
   const { profilePik } = use(ImgContext);
   const [show, setShow] = useState(false);
-  console.log(use?.photoURL);
-  console.log(show);
-  console.log(profilePik);
+  // console.log(use?.photoURL);
+  // console.log(show);
+  // console.log(profilePik);
 
   const link = (
     <>

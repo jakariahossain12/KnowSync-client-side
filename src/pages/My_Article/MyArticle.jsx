@@ -18,8 +18,8 @@ const MyArticle = () => {
       .then((res) => {
         setArticle(res.data);
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
+        
       });
   }, [user, axiosSecure]);
 

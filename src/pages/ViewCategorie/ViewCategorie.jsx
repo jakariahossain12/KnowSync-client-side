@@ -7,17 +7,17 @@ const ViewCategory = () => {
   const { id } = useParams();
 
     const  [articles, setArticle]  = useState([]);
-    console.log(articles);
+    
 
   useEffect(() => {
     axios
       .get(`http://localhost:3000/article-all?category=${id}`)
       .then((res) => {
-          console.log(res);
+          
           setArticle(res?.data)
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
+        
       });
   }, [id,setArticle]);
 

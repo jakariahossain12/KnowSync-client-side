@@ -3,7 +3,7 @@ import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { Link, useRouteError } from 'react-router';
 const Error = () => {
   const error = useRouteError();
-  console.log(error);
+ 
     return (
       <div className="">
         <div className="h-screen flex flex-col justify-center items-center">

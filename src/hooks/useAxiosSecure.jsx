@@ -21,8 +21,8 @@ const useAxiosSecure = () => {
           if (error.status === 401 || error.status === 403) {
               userSignOut().then(() => {
                 console.log(`your logged out because of an error with ${error.status} code`);
-              }).catch(error => {
-                console.log(error);
+              }).catch(() => {
+                
             })
         }
       return Promise.reject(error);

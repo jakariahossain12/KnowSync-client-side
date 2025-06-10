@@ -29,7 +29,7 @@ export const router = createBrowserRouter([
       {
         path: "all-articles",
         loader: () => fetch("http://localhost:3000/article-all"),
-        hydrateFallbackElement:<Loading></Loading>,
+        hydrateFallbackElement: <Loading></Loading>,
         element: <AllArticles></AllArticles>,
       },
       {
@@ -61,12 +61,14 @@ export const router = createBrowserRouter([
         path: "my-article/:id",
         loader: ({ params }) =>
           fetch(`http://localhost:3000/my-article/${params.id}`),
+        hydrateFallbackElement: <Loading></Loading>,
         element: <MyArticleUpdate></MyArticleUpdate>,
       },
       {
         path: "article-details/:id",
         loader: ({ params }) =>
           fetch(`http://localhost:3000/my-article/${params.id}`),
+        hydrateFallbackElement: <Loading></Loading>,
         element: (
           <PrivateRoute>
             <ArticleDetails></ArticleDetails>
@@ -77,6 +79,7 @@ export const router = createBrowserRouter([
         path: "my-article/article-details/:id",
         loader: ({ params }) =>
           fetch(`http://localhost:3000/my-article/${params.id}`),
+        hydrateFallbackElement: <Loading></Loading>,
         element: (
           <PrivateRoute>
             <ArticleDetails></ArticleDetails>

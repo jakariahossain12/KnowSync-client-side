@@ -55,13 +55,13 @@ const AuthProvider = ({ children }) => {
           .then(res => {
             const token = res.data.token;
             localStorage.setItem("token", token);
-          }).catch(error => {
-          console.log(error);
+          }).catch(() => {
+          
         })
 
 
 
-        console.log(currentUser);
+        
       } else {
         setUser(null);
       }
@@ -72,7 +72,7 @@ const AuthProvider = ({ children }) => {
     };
   }, []);
 
-  console.log(user);
+  
 
   const userInfo = {
     user,

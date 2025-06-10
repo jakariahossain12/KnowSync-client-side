@@ -7,7 +7,7 @@ const AllArticles = () => {
   const categories = use(categoryPromise);
 
   const articles = useLoaderData();
-  console.log(articles);
+  
 
   
 

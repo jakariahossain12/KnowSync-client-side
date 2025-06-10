@@ -23,7 +23,7 @@ const PostArticle = () => {
     const form = e.target;
     const formData = new FormData(form);
     const article = Object.fromEntries(formData.entries());
-    console.log(article);
+    
     article.userPik = user.photoURL;
     article.likes = [];
 
@@ -45,8 +45,8 @@ const PostArticle = () => {
           setContent("");
         }
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
+        
       });
   };
 

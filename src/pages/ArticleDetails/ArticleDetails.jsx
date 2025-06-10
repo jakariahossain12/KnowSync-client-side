@@ -33,17 +33,17 @@ const ArticleDetails = () => {
       user_photo: user?.photoURL,
       comment: comment,
     };
-    console.log(commentInfo);
+    
 
     axios
       .post("http://localhost:3000/article-comment", commentInfo)
       .then((res) => {
-        console.log(res.data);
+        
         setInsertedId(res.data?.insertedId);
       })
-      .catch((error) => {
-        console.log(error);
-        setComment(prv=>prv)
+      .catch(() => {
+        
+        
       });
   };
 
@@ -53,12 +53,12 @@ const ArticleDetails = () => {
       .then((res) => {
         setComment(res.data)
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
+        
       });
   }, [article,insertedId]);
 
-  console.log(comments);
+  
 
   return (
     <div className="max-w-3xl my-7 mx-auto p-6 bg-white dark:bg-base-200 rounded-lg shadow">

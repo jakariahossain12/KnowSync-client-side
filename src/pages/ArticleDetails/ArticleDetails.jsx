@@ -44,6 +44,7 @@ const ArticleDetails = () => {
       )
       .then((res) => {
         setInsertedId(res.data?.insertedId);
+        e.target.comment.value = ''
       })
       .catch(() => {});
   };

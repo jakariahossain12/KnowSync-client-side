@@ -4,6 +4,7 @@
 * you can share your knowledge on this website like an article 
 * you you can like other article and comment 
 * and you update the article and you can delete
+* this website store data use mongodb
 *** this website safe for your data no one will see your data 
 *** this website used firebase for signUp 
 *** and secure your data used jwt token create through your email that why no body see your data completely safe

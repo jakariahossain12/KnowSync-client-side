@@ -6,10 +6,12 @@ import MyArticleCard from "../../components/MyArticleCard/MYArticleCard";
 
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Loading from "../../components/Loading/Loading";
 
 const MyArticle = () => {
   const { user } = use(AuthContext);
   const [articles, setArticle] = useState([]);
+  const [loading, setLoading] = useState(true); 
   // const message = ()=>toast.success('')
   const axiosSecure = useAxiosSecure();
 
@@ -17,11 +19,16 @@ const MyArticle = () => {
     axiosSecure(`/my-article?email=${user.email}`)
       .then((res) => {
         setArticle(res.data);
+        setLoading(false);
       })
       .catch(() => {
-        
+        setLoading(false);
       });
   }, [user, axiosSecure]);
+
+  if (loading) {
+    return <Loading></Loading>
+  }
 
   const handelDelete = (Id) => {
     Swal.fire({

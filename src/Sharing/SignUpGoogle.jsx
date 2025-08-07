@@ -26,7 +26,7 @@ const SignUpGoogle = () => {
     <div className="mt-6">
       <button
         onClick={handleGoogleLogin}
-        className="w-full cursor-pointer flex items-center justify-center gap-2 border border-gray-300 py-2 rounded-xl hover:bg-gray-100 transition"
+        className="w-full cursor-pointer flex items-center justify-center gap-2 border border-background py-2 rounded-xl hover:bg-background transition"
       >
         <FcGoogle size={20} />
         <span>Continue with Google</span>

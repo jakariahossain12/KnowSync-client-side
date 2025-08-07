@@ -2,11 +2,13 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import ArticleCard from "../../components/ArticlesCard/ArticleCard";
+import Loading from "../../components/Loading/Loading";
 
 const ViewCategory = () => {
   const { id } = useParams();
 
   const [articles, setArticle] = useState([]);
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
     axios
@@ -15,9 +17,13 @@ const ViewCategory = () => {
       )
       .then((res) => {
         setArticle(res?.data);
+        setLoading(false);
       })
-      .catch(() => {});
+      .catch(() => {setLoading(false);});
   }, [id, setArticle]);
+  if (loading) {
+    return <Loading></Loading>;
+  }
 
   return (
     <>

@@ -1,24 +1,43 @@
-*** Website name KnowSync 
+🌐 Website Name: KnowSync
 
-*** why you use this website
-* you can share your knowledge on this website like an article 
-* you you can like other article and comment 
-* and you update the article and you can delete
-* this website store data use mongodb
-*** this website safe for your data no one will see your data 
-*** this website used firebase for signUp 
-*** and secure your data used jwt token create through your email that why no body see your data completely safe
- 
+## website link : https://chipper-conkies-13f147.netlify.app/
 
- *** I use some npm package this website
-1 sweetalert2
-2 react-toastify
-3 react-router
-4 react-icons
-5 lucide-react
-6 firebase
-7 daisyui
-8 axios
-9 motion
+
+🚀 Why Use This Website?
+Share your knowledge through articles
+
+Like and comment on other users' articles
+
+Edit and delete your own articles
+
+Data is securely stored using MongoDB
+
+🔒 Data Privacy & Security
+Your data is safe — no one can view it except you
+
+Uses Firebase Authentication for secure sign-up and login
+
+Implements JWT (JSON Web Token) to verify and protect user sessions based on email — ensuring complete data security
+
+🧰 Technologies & Packages Used
+This website uses several powerful libraries and tools:
+
+sweetalert2 – for beautiful alert dialogs
+
+react-toastify – for responsive toast notifications
+
+react-router – for client-side routing
+
+react-icons – for a wide range of icons
+
+lucide-react – for elegant and customizable icons
+
+firebase – for user authentication
+
+daisyui – for Tailwind CSS component styling
+
+axios – for making HTTP requests
+
+framer-motion – for smooth UI animations
 
 

@@ -1,11 +1,21 @@
 import React from 'react';
+import AOS from "aos";
+import "aos/dist/aos.css"; // Import AOS styles
 
 const TopContributors = () => {
+  
+   AOS.init({
+     duration: 1000, // animation duration (ms)
+     once: false, // run animation only once
+   });
     return (
       <section className="py-16 px-4 bg-base-100 text-center">
         <h2 className="text-3xl font-bold mb-10">Top Contributors</h2>
         <div className="grid gap-6 md:grid-cols-3 max-w-6xl mx-auto">
-          <div className="bg-base-200 rounded-xl p-6 shadow-md ">
+          <div
+            data-aos="fade-right"
+            className="bg-base-200 rounded-xl p-6 shadow-md "
+          >
             <img
               src="https://i.pravatar.cc/100?u=user1"
               alt="User 1"
@@ -25,7 +35,10 @@ const TopContributors = () => {
             <p className="text-sm opacity-70">19 Articles</p>
           </div>
 
-          <div className="bg-base-200 rounded-xl p-6 shadow-md">
+          <div
+            data-aos="fade-left"
+            className="bg-base-200 rounded-xl p-6 shadow-md"
+          >
             <img
               src="https://i.pravatar.cc/100?u=user3"
               alt="User 3"

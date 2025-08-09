@@ -75,9 +75,9 @@ export const router = createBrowserRouter([
           ),
         hydrateFallbackElement: <Loading></Loading>,
         element: (
-          <PrivateRoute>
+          
             <ArticleDetails></ArticleDetails>
-          </PrivateRoute>
+          
         ),
       },
       {

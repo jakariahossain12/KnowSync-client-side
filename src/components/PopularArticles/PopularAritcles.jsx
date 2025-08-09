@@ -11,7 +11,7 @@ const PopularAritcles = ({ articles }) => {
 
   return (
     <div className="w-10/12 mx-auto text-text bg-background my-7 space-y-5">
-      {window.scrollTo(0,0)}
+      {/* {window.scrollTo(0,0)} */}
       <div>
         <h1 className="font-extrabold text-4xl text-center">
           {" "}
@@ -42,7 +42,7 @@ const PopularAritcles = ({ articles }) => {
         })}
       </div>
 
-      <div className=" flex flex-col justify-center  gap-4">
+      <div className=" grid grid-cols-3  gap-4">
         
         {articles.map((article) => (
           <ArticleCard key={article._id} article={article}></ArticleCard>

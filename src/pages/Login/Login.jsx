@@ -5,6 +5,7 @@ import { CiRead, CiUnread } from "react-icons/ci";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../Context/Context";
 import SignUpGoogle from "../../Sharing/SignUpGoogle";
+import NavBar from "../../components/NavBar/NavBar";
 
 const Login = () => {
   const notify = () => toast.success("login account successfully");
@@ -34,6 +35,7 @@ const Login = () => {
 
   return (
     <div>
+      <NavBar></NavBar>
       <div className="min-h-screen  flex items-center justify-center bg-background p-6">
         <div className="w-full max-w-md bg-surface rounded-2xl shadow-lg p-8">
           <h2 className="text-2xl font-bold text-center text-text mb-6">

@@ -20,14 +20,25 @@ const NavBar = () => {
         <NavLink to={"/all-articles"}>All Articles</NavLink>
       </li>
       <li className="font-bold text-text hover:text-primary">
-        <NavLink to={"/my-articles"}>My Articles</NavLink>
-      </li>
-      <li className="font-bold text-text hover:text-primary">
-        <NavLink to={"/post-article"}>Post Article</NavLink>
-      </li>
-      <li className="font-bold text-text hover:text-primary">
         <NavLink to={"/about-us"}>About Us</NavLink>
       </li>
+
+      {/* {user && (
+        <li>
+          <details>
+            <summary className="font-bold text-text">Parent</summary>
+            <ul className="bg-base-100 ">
+              <li className="font-bold text-text hover:text-primary">
+                <NavLink to={"/my-articles"}>My Articles</NavLink>
+              </li>
+
+              <li className="font-bold text-text hover:text-primary">
+                <NavLink to={"/post-article"}>Post Article</NavLink>
+              </li>
+            </ul>
+          </details>
+        </li>
+      )} */}
     </>
   );
 
@@ -38,7 +49,7 @@ const NavBar = () => {
   };
 
   return (
-    <div className="navbar bg-base-200 shadow-sm sticky top-0 px-4 z-50">
+    <div className="navbar bg-base-200 shadow-sm sticky top-0 px-10 z-50">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn  lg:hidden">
@@ -83,7 +94,7 @@ const NavBar = () => {
             </div>
 
             {show && (
-              <div className="absolute space-y-3 right-0 w-48 mt-2 bg-background border border-gray-200 rounded-lg shadow-lg p-4 z-10">
+              <div className="absolute space-y-3 right-0 w-48 mt-2 bg-base-200 border border-gray-200 rounded-lg shadow-lg p-4 z-10">
                 <div className="font-bold text-text mb-2">
                   {user?.displayName}
                 </div>

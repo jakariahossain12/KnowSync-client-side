@@ -1,6 +1,7 @@
 import React, { use, } from "react";
 import ArticleCard from "../../components/ArticlesCard/ArticleCard";
 import { Link, useLoaderData } from "react-router";
+import { Fade } from "react-awesome-reveal";
 const categoryPromise = fetch("/category.json").then((res) => res.json());
 
 const AllArticles = () => {
@@ -31,10 +32,12 @@ const AllArticles = () => {
           );
         })}
       </div>
-      <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 justify-center items-center gap-4">
-        {articles.map((article) => (
-          <ArticleCard key={article._id} article={article}></ArticleCard>
-        ))}
+      <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-3 justify-center items-center gap-4">
+        <Fade cascade duration={700}>
+          {articles.map((article) => (
+            <ArticleCard key={article._id} article={article}></ArticleCard>
+          ))}
+        </Fade>
       </div>
     </div>
   );

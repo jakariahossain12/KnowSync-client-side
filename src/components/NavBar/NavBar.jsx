@@ -76,7 +76,7 @@ const NavBar = () => {
             {link}
           </ul>
         </div>
-        <a className=" text-3xl text-primary logo font-bold">KnowSync</a>
+        <h1 className=" text-3xl text-primary logo font-bold">KnowSync</h1>
       </div>
       <div className="navbar-end flex gap-8">
         <div className=" hidden lg:flex">

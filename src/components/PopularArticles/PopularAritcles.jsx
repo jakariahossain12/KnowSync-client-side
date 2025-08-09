@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { Calculator, Code, Palette, Atom, Cpu, Layers } from "lucide-react";
 import * as Icons from "lucide-react";
 import ArticleCard from '../ArticlesCard/ArticleCard';
+import { Fade } from 'react-awesome-reveal';
 
 const categoryPromise = fetch('/category.json').then(res=>res.json())
 
@@ -30,7 +31,6 @@ const PopularAritcles = ({ articles }) => {
             <Link
               key={category?.id}
               to={`view-category/${category?.name}`}
-              
               className="relative border-2 border-primary inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group"
             >
               <span className="w-48 h-48 rounded rotate-[-40deg] bg-primary absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
@@ -43,10 +43,11 @@ const PopularAritcles = ({ articles }) => {
       </div>
 
       <div className=" grid grid-cols-3  gap-4">
-        
-        {articles.map((article) => (
-          <ArticleCard key={article._id} article={article}></ArticleCard>
-        ))}
+        <Fade cascade duration={700}>
+          {articles.map((article) => (
+            <ArticleCard key={article._id} article={article}></ArticleCard>
+          ))}
+        </Fade>
       </div>
     </div>
   );

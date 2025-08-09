@@ -38,7 +38,7 @@ const Login = () => {
       <NavBar></NavBar>
       <div className="min-h-screen  flex items-center justify-center bg-background p-6">
         <div className="w-full max-w-md bg-surface rounded-2xl shadow-lg p-8">
-          <h2 className="text-2xl font-bold text-center text-text mb-6">
+          <h2 className="text-2xl font-bold text-center text-primary mb-6">
             Welcome Back
           </h2>
           <form onSubmit={handleSubmit} className="space-y-4">

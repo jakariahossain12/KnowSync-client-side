@@ -1,11 +1,13 @@
 import { use, useEffect, useState } from "react";
 import { ThumbsUp, MessageSquare } from "lucide-react";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useLocation, useNavigate } from "react-router";
 import axios from "axios";
 import { AuthContext } from "../../Context/Context";
 
 const ArticleDetails = () => {
   const article = useLoaderData();
+  // const location = useLocation();
+  const navigate = useNavigate();
   const { user } = use(AuthContext);
 
   const [likeCount, setLikeCount] = useState(article?.likes?.length);
@@ -13,6 +15,10 @@ const ArticleDetails = () => {
   const [insertedId, setInsertedId] = useState("");
 
   const handleLike = () => {
+    if (!user) {
+      // return <Navigate state={location.pathname} to={"/login"}></Navigate>;
+      navigate("/login");
+    }
     axios
       .patch(
         `https://know-sync-server-side.vercel.app/like-article/${article?._id}`,
@@ -29,6 +35,10 @@ const ArticleDetails = () => {
 
   const handleCommentSubmit = (e) => {
     e.preventDefault();
+    if (!user) {
+      // return <Navigate state={location.pathname} to={"/login"}></Navigate>;
+      navigate("/login");
+    }
     const comment = e.target.comment.value;
     const commentInfo = {
       article_i: article?._id,
@@ -44,7 +54,7 @@ const ArticleDetails = () => {
       )
       .then((res) => {
         setInsertedId(res.data?.insertedId);
-        e.target.comment.value = ''
+        e.target.comment.value = "";
       })
       .catch(() => {});
   };

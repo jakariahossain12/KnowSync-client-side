@@ -46,17 +46,18 @@ const ArticleDetails = () => {
       user_photo: user?.photoURL,
       comment: comment,
     };
-
-    axios
-      .post(
-        "https://know-sync-server-side.vercel.app/article-comment",
-        commentInfo
-      )
-      .then((res) => {
-        setInsertedId(res.data?.insertedId);
-        e.target.comment.value = "";
-      })
-      .catch(() => {});
+    if (comment.length > 0) {
+      axios
+        .post(
+          "https://know-sync-server-side.vercel.app/article-comment",
+          commentInfo
+        )
+        .then((res) => {
+          setInsertedId(res.data?.insertedId);
+          e.target.comment.value = "";
+        })
+        .catch(() => {});
+    }
   };
 
   useEffect(() => {

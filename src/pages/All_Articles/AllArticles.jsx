@@ -32,7 +32,7 @@ const AllArticles = () => {
           );
         })}
       </div>
-      <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-3 justify-center items-center gap-4">
+      <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-3 justify-center items-center gap-4 my-10">
         <Fade cascade duration={700}>
           {articles.map((article) => (
             <ArticleCard key={article._id} article={article}></ArticleCard>

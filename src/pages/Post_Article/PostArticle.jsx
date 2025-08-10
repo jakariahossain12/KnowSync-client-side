@@ -26,6 +26,7 @@ const PostArticle = () => {
 
     article.userPik = user.photoURL;
     article.likes = [];
+    article.create_date = new Date().toISOString();
 
     fetch(`https://know-sync-server-side.vercel.app/article`, {
       method: "POST",

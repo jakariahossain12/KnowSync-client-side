@@ -17,7 +17,7 @@ const ArticleCard = ({ article }) => {
         </div>
       </div>
 
-      <h2 className="text-xl font-bold mb-1">{article?.title}</h2>
+      <h2 className="text-xl font-bold mb-1 line-clamp-1">{article?.title}</h2>
       <p className="text-gray-500 mb-3">#{article?.category}</p>
 
       <div className="flex items-center justify-between text-sm text-gray-600 dark:text-gray-400">

@@ -5,6 +5,7 @@ import TopContributors from '../../components/TopContributors/TopContributors';
 import PopularAritcles from '../../components/PopularArticles/PopularAritcles';
 import { useLoaderData } from 'react-router';
 import WeeklyKnowledgeChallenge from '../../components/WeeklyKnowledgeChallenge/WeeklyKnowledgeChallenge ';
+import SuccessStories from '../../components/SuccessStories/SuccessStories';
 
 const Home = () => {
   const articles = useLoaderData();
@@ -14,8 +15,10 @@ const Home = () => {
         <PopularAritcles articles={articles}></PopularAritcles>
 
         <WeeklyKnowledgeChallenge></WeeklyKnowledgeChallenge>
+
         <TopContributors></TopContributors>
         <OurResult></OurResult>
+        <SuccessStories></SuccessStories>
       </div>
     );
 };

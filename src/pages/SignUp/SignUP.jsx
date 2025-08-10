@@ -1,7 +1,7 @@
 import React, { use, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { CiRead, CiUnread } from "react-icons/ci";
 import { AuthContext, ImgContext } from "../../Context/Context";
 import SignUpGoogle from "../../Sharing/SignUpGoogle";
@@ -14,7 +14,7 @@ const SignUp = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { userSignUp, userUpdateProfile } = use(AuthContext);
-  const {setProfilePik}=use(ImgContext)
+  const { setProfilePik } = use(ImgContext);
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -36,16 +36,16 @@ const SignUp = () => {
         const upDateInfo = {
           displayName: name,
           photoURL: photo,
-          };
-          
-          userUpdateProfile(upDateInfo)
-              .then(() => {
-                navigate(location?.state || '/')
-                setProfilePik(photo)
-              }).catch(error => {
-        errorToast(error.message);
-              
+        };
+
+        userUpdateProfile(upDateInfo)
+          .then(() => {
+            navigate(location?.state || "/");
+            setProfilePik(photo);
           })
+          .catch((error) => {
+            errorToast(error.message);
+          });
 
         notify();
       })
@@ -134,6 +134,7 @@ const SignUp = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

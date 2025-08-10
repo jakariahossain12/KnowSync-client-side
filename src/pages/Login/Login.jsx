@@ -2,7 +2,7 @@ import React, { use, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router";
 import { CiRead, CiUnread } from "react-icons/ci";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { AuthContext } from "../../Context/Context";
 import SignUpGoogle from "../../Sharing/SignUpGoogle";
 import NavBar from "../../components/NavBar/NavBar";
@@ -87,15 +87,18 @@ const Login = () => {
           <div className="mt-6 flex items-center justify-center">
             <p className="text-text-muted text-sm">
               Don’t have an account?{" "}
-              <Link state={location?.state} to="/sign-up" className="text-blue-600 hover:underline">
+              <Link
+                state={location?.state}
+                to="/sign-up"
+                className="text-blue-600 hover:underline"
+              >
                 Sign Up
               </Link>
             </p>
           </div>
-
-          
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

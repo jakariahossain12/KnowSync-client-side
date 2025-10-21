@@ -52,7 +52,7 @@ const AuthProvider = ({ children }) => {
         setUser(currentUser);
 
         axios
-          .post("https://know-sync-server-side.vercel.app/jwt-token", {
+          .post("http://localhost:3000/jwt-token", {
             email: currentUser?.email,
           })
           .then((res) => {

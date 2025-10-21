@@ -25,7 +25,10 @@ const TopContributors = () => {
             <p className="text-sm opacity-70">25 Articles</p>
           </div>
 
-          <div className="bg-base-200 rounded-xl p-6 shadow-md">
+          <div
+            
+            className="bg-base-200 rounded-xl p-6 shadow-md"
+          >
             <img
               src="https://i.pravatar.cc/100?u=user2"
               alt="User 2"
@@ -36,7 +39,7 @@ const TopContributors = () => {
           </div>
 
           <div
-            data-aos="fade-left"
+            data-aos="fade-right"
             className="bg-base-200 rounded-xl p-6 shadow-md"
           >
             <img

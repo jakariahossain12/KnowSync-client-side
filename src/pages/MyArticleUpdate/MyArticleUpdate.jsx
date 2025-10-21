@@ -25,7 +25,7 @@ const MyArticleUpdate = () => {
     const formData = new FormData(form);
     const article = Object.fromEntries(formData.entries());
 
-    fetch(`https://know-sync-server-side.vercel.app/my-article/${id}`, {
+    fetch(`http://localhost:3000/my-article/${id}`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${token}`,

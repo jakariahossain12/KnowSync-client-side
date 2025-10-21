@@ -42,7 +42,7 @@ const PopularAritcles = ({ articles }) => {
         })}
       </div>
 
-      <div className=" grid grid-cols-3  gap-4">
+      <div className=" grid grid-cols-1 md:grid-cols-3  gap-4">
         <Fade cascade duration={700}>
           {articles.map((article) => (
             <ArticleCard key={article._id} article={article}></ArticleCard>

@@ -28,7 +28,7 @@ const PostArticle = () => {
     article.likes = [];
     article.create_date = new Date().toISOString();
 
-    fetch(`https://know-sync-server-side.vercel.app/article`, {
+    fetch(`http://localhost:3000/article`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,

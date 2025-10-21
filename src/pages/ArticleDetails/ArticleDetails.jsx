@@ -21,7 +21,7 @@ const ArticleDetails = () => {
     }
     axios
       .patch(
-        `https://know-sync-server-side.vercel.app/like-article/${article?._id}`,
+        `http://localhost:3000/like-article/${article?._id}`,
         {
           email: user?.email,
         }
@@ -49,7 +49,7 @@ const ArticleDetails = () => {
     if (comment.length > 0) {
       axios
         .post(
-          "https://know-sync-server-side.vercel.app/article-comment",
+          "http://localhost:3000/article-comment",
           commentInfo
         )
         .then((res) => {
@@ -63,7 +63,7 @@ const ArticleDetails = () => {
   useEffect(() => {
     axios
       .get(
-        `https://know-sync-server-side.vercel.app/article-comment/${article?._id}`
+        `http://localhost:3000/article-comment/${article?._id}`
       )
       .then((res) => {
         setComment(res.data);

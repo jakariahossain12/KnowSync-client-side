@@ -13,7 +13,7 @@ const ViewCategory = () => {
   useEffect(() => {
     axios
       .get(
-        `https://know-sync-server-side.vercel.app/article-all?category=${id}`
+        `http://localhost:3000/category-all?category=${id}`
       )
       .then((res) => {
         setArticle(res?.data);

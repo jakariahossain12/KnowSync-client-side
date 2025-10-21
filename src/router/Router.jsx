@@ -21,18 +21,26 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        loader: () => fetch(`https://know-sync-server-side.vercel.app/article`),
+        loader: () => fetch(`http://localhost:3000/article`),
         hydrateFallbackElement: <Loading></Loading>,
         Component: Home,
       },
 
       {
-        path: "all-articles",
-        loader: () =>
-          fetch("https://know-sync-server-side.vercel.app/article-all"),
-        hydrateFallbackElement: <Loading></Loading>,
-        element: <AllArticles></AllArticles>,
-      },
+  path: "all-articles",
+  loader: async ({ request }) => {
+    const url = new URL(request.url);
+    const page = url.searchParams.get("page") || 1;
+    const limit = url.searchParams.get("limit") || 6;
+
+    const res = await fetch(
+      `http://localhost:3000/article-all?page=${page}&limit=${limit}`
+    );
+    return res.json();
+  },
+  hydrateFallbackElement: <Loading />,
+  element: <AllArticles />,
+},
       {
         path: "my-articles",
         element: (
@@ -62,7 +70,7 @@ export const router = createBrowserRouter([
         path: "my-article/:id",
         loader: ({ params }) =>
           fetch(
-            `https://know-sync-server-side.vercel.app/my-article/${params.id}`
+            `http://localhost:3000/my-article/${params.id}`
           ),
         hydrateFallbackElement: <Loading></Loading>,
         element: <MyArticleUpdate></MyArticleUpdate>,
@@ -71,7 +79,7 @@ export const router = createBrowserRouter([
         path: "article-details/:id",
         loader: ({ params }) =>
           fetch(
-            `https://know-sync-server-side.vercel.app/my-article/${params.id}`
+            `http://localhost:3000/my-article/${params.id}`
           ),
         hydrateFallbackElement: <Loading></Loading>,
         element: (
@@ -84,7 +92,7 @@ export const router = createBrowserRouter([
         path: "my-article/article-details/:id",
         loader: ({ params }) =>
           fetch(
-            `https://know-sync-server-side.vercel.app/my-article/${params.id}`
+            `http://localhost:3000/my-article/${params.id}`
           ),
         hydrateFallbackElement: <Loading></Loading>,
         element: (
